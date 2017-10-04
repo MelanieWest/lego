@@ -1,5 +1,31 @@
 <form action="/action">
-  Object:
-  <input type="text" name="creation" value="legosr>...">
-  <input type="submit" value="Build">
+  I want to build:
+  <input type="text" name="creation" id="object" value="">
+  <input type="submit" id = "submit" value="submit">
 </form>
+
+<p>Object: {{object}}</p>
+<p>Built:  {{built}}</p>
+<input type="submit" id="build" value="Build">
+
+<!-- List all non-built lego objects entered -->
+<style media="screen">
+  li {
+    height : 40px;
+    width: 100px;
+    color: green;
+    background-color: yellow;
+    margin-bottom: 30px;
+  }
+</style>
+
+<h2>Lego Projects</h2>
+
+<ul>
+{{#each dataArray }}
+  <li> {{object}},
+{{built}},
+<input type="submit" id="build" value="Build">,
+  </li>
+{{/each}}
+</ul>

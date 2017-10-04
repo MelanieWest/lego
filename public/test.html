@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+    </header>
+    <div id = "middle">
+        
+    </div>
+    <footer>
+    </footer>
+    <script>
+    $(".submit").on("click", function(event) {
+      event.preventDefault();
+
+      // Here we grab the form elements
+      var newLego = {
+        object: $("#object").val().trim(),
+        built: false            //default when first entered
+      };
+
+      console.log(newLego);
+
+
+
+      $.post("/api/legos", newLego,
+        function(data) {
+
+         // let them know the entry was received
+
+          if (data) {
+            alert("The blocks are ready for your new project..");
+          }
+
+
+          // Clear the form when submitting
+          $("#object").val("");
+
+        });
+
+    });
+
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
