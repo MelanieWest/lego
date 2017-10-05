@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <header></header>
+    <header>Lego Creator</header>
   </div>
   <div class = "row">
     <div class = "col -6">
@@ -11,9 +11,7 @@
         <input type="submit" id = "submit" value="submit">
       </form>
 
-      <p>Object: {{object}}</p>
-      <p>Built:  {{built}}</p>
-      <input type="submit" id="build" value="Build">
+ 
 
       <!-- List all non-built lego objects entered -->
       <style media="screen">
@@ -26,7 +24,7 @@
         }
       </style>
 
-      <h2>Lego Projects</h2>
+      <h2>Projects to be built:</h2>
 
       <ul>
       {{#each dataArray }}
@@ -40,11 +38,14 @@
     </div>  <!-- end of first column (left side) -->
 
     <div class = "col-6">
+
+      <h2>Completed projects: </h2>
+      
          <ul>
       {{#each doneArray }}
         <li> {{object}},
-      {{built}},
-      <input type="submit" id="build" value="Build">,
+          {{built}}
+      <input type="submit" id="build" value="Disassemble">,
         </li>
       {{/each}}
       </ul>

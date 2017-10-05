@@ -21,19 +21,6 @@ app.set("view engine", "handlebars");
 require("./routes/htmlroutes")(app);
 require("./routes/dataroutes")(app);
 
-//test code to see if I can render with handlebars
-
-var lego ={
-    object: "robot",
-    built: false
-};
-
-app.get("/lego", function(req, res) {
-    res.render("index", lego);
-});
-
-
-// ------------end of handlebars test ------------
 
 
 app.listen(PORT, function() {
