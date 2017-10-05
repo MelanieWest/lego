@@ -45,7 +45,7 @@
       {{#each doneArray }}
         <li> {{object}},
           {{built}}
-      <input type="submit" id="build" value="Disassemble">,
+      <input type="submit" id="break" value="Disassemble">,
         </li>
       {{/each}}
       </ul>
@@ -54,3 +54,45 @@
   </div>  <!--end of 'row' div that defines the body -->
 
 </div>    <!--end of container div -->
+   <script>
+
+      var currentUrl = window.location.origin;
+
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+
+      var newLego = {
+        object: "boat",
+        built: false
+      }
+
+      // Here we grab the form elements
+      var newLego = {
+        object: $("#object").val().trim(),
+        built: false            //default when first entered
+      };
+
+      console.log(newLego);
+
+
+
+      $.post(currentUrl+ "/api/legos", newLego,
+        function(data) {
+
+         // let them know the entry was received
+
+          if (data) {
+            alert("The blocks are ready for your new project..");
+          }
+
+          window.location.reload();
+
+          // Clear the form when submitting
+          $("#object").val("");
+
+        });
+
+    });
+
+    </script>
