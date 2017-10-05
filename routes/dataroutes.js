@@ -1,4 +1,5 @@
 var legoData = require("../data/legoData.js");
+var listItems = {dataArray: [],doneArray: []};
 
 module.exports = function(app){
 
@@ -6,14 +7,12 @@ module.exports = function(app){
         //receive data from html fields
         //res.json(legoData);
 
-        res.render("index",legoData);
+        res.render("index",listItems);
 
 //this is extra output, to test data
         // var legoJSON = JSON.stringify(legoData);
         // console.log(legoData);
     });     //end of get
-
- 
 
 
     app.post("/legos", function(req, res) {
@@ -24,21 +23,19 @@ module.exports = function(app){
             console.log(req.body);
             legoData.push(req.body);
 
- //           var listItems = {dataArray: [],doneArray: []};
-            
              
-        //         for (var i=0; i< legoData.length; i++){
-        //             if(!legoData[i].built){
-        //                 listItems.dataArray.push(legoData[i]);
-        //             }else{
-        //                 listItems.doneArray.push(legoData[i]);
-        //             }
-        //         }
+                for (var i=0; i< legoData.length; i++){
+                    if(!legoData[i].built){
+                        listItems.dataArray.push(legoData[i]);
+                    }else{
+                        listItems.doneArray.push(legoData[i]);
+                    }
+                }
 
-        // console.log(listItems);
-        // res.json(listItems);
+        console.log(listItems);
+        res.json(listItems);
 
-         res.render("index",legoData);
+         res.render("index",listItems);
       }); //end of post
 
 };     // end of function

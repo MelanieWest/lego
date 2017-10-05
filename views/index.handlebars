@@ -26,8 +26,8 @@
       <h2>Projects to be built:</h2>
 
       <ul>
-      {{#each legoData }}
-        <li> {{this.object}},
+      {{#each dataArray }}
+        <li> {{object}},
  
       <button type="submit" id="build" value="Build"></button>,
         </li>
@@ -42,9 +42,9 @@
       
          <ul>
       {{#each doneArray }}
-        <li> {{this.object}},
+        <li> {{object}},
           
-      {{!-- <button type="submit" id="break" value="Disassemble"></button>, --}}
+      <button type="submit" id="break" value="Disassemble"></button>,
         </li>
       {{/each}}
       </ul>
@@ -83,7 +83,7 @@
 
           // Clear the form when submitting
           $("#object").val("");
-              doneArray.push({{this.object}});
+
               
         });
 
@@ -91,6 +91,15 @@
 
 
   $("#build").on("click",function(){
+
+    // set the 'built' property to 'true' so the object can move to the right
+    //of the screen when sorted
+
+     this.built = true;
+     $.post(currentUrl + "/legos")
+      console.log(legoData);
+     //no new data to post, but the modified data should change
+     //the location of the variable
 
   });
     </script>
