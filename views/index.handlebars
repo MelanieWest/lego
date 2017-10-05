@@ -1,31 +1,55 @@
-<form action="/action">
-  I want to build:
-  <input type="text" name="creation" id="object" value="">
-  <input type="submit" id = "submit" value="submit">
-</form>
+<div class = "container">
+  <div class = "row">
+    <header></header>
+  </div>
+  <div class = "row">
+    <div class = "col -6">
 
-<p>Object: {{object}}</p>
-<p>Built:  {{built}}</p>
-<input type="submit" id="build" value="Build">
 
-<!-- List all non-built lego objects entered -->
-<style media="screen">
-  li {
-    height : 40px;
-    width: 100px;
-    color: green;
-    background-color: yellow;
-    margin-bottom: 30px;
-  }
-</style>
+      <form action="/action">
+        <input type="text" name="creation" id="object" value="">
+        <input type="submit" id = "submit" value="submit">
+      </form>
 
-<h2>Lego Projects</h2>
+      <p>Object: {{object}}</p>
+      <p>Built:  {{built}}</p>
+      <input type="submit" id="build" value="Build">
 
-<ul>
-{{#each dataArray }}
-  <li> {{object}},
-{{built}},
-<input type="submit" id="build" value="Build">,
-  </li>
-{{/each}}
-</ul>
+      <!-- List all non-built lego objects entered -->
+      <style media="screen">
+        li {
+          height : 40px;
+          width: 100px;
+          color: green;
+          background-color: yellow;
+          margin-bottom: 30px;
+        }
+      </style>
+
+      <h2>Lego Projects</h2>
+
+      <ul>
+      {{#each dataArray }}
+        <li> {{object}},
+      {{built}},
+      <input type="submit" id="build" value="Build">,
+        </li>
+      {{/each}}
+      </ul>
+      
+    </div>  <!-- end of first column (left side) -->
+
+    <div class = "col-6">
+         <ul>
+      {{#each doneArray }}
+        <li> {{object}},
+      {{built}},
+      <input type="submit" id="build" value="Build">,
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+   
+  </div>  <!--end of 'row' div that defines the body -->
+
+</div>    <!--end of container div -->
