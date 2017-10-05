@@ -1,5 +1,6 @@
 const path = require("path");
 
+//this path isn't used.  it is commented out in the server
 
 module.exports = function(app){
 

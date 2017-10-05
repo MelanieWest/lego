@@ -17,8 +17,10 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//set up paths
-require("./routes/htmlroutes")(app);
+//set up the one endpoint, /legos:
+
+//require("./routes/htmlroutes")(app);
+
 require("./routes/dataroutes")(app);
 
 
