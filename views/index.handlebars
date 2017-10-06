@@ -26,11 +26,11 @@
       <h2>Projects to be built:</h2>
 
       <ul>
-      {{#each legoData}}
+      {{#each data}}
        {{#unless this.built}}
         <li> {{this.object}},
-          <p> something false </p>
-        <button type="submit" id="build" value="Build"></button>,
+ 
+        <button type="submit" id="build" value="Build">Build</button>,
         </li>
         {{/unless}}
       {{/each}}
@@ -43,11 +43,11 @@
       <h2>Completed projects: </h2>
       
       <ul>
-      {{#each legoData }}
+      {{#each data }}
        {{#if this.built}}
         <li> {{this.object}}, 
-          <p> something true </p> 
-          <button type="submit" id="break" value="Disassemble"></button>,
+       
+          <button type="submit" id="break" value="Disassemble">Disassemble</button>,
         </li>
         {{/if}}
       {{/each}}
