@@ -15,7 +15,7 @@ module.exports = function(app){
 });     //end of get
 
 
-    app.post("/legos", function(req, res) {
+    app.post("/", function(req, res) {
 
         console.log('app.post')
   //      console.log(req.body);
