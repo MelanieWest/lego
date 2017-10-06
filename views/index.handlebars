@@ -4,7 +4,7 @@
   </div>
   <div class = "row">
     <div class = "col -6">
-
+<br><br>
     <form id="newLego" class="button-size">
       <textarea type="text" name="creation" id="object"></textarea>
       <button type="submit" id="submit">submit</button>
@@ -26,26 +26,29 @@
       <h2>Projects to be built:</h2>
 
       <ul>
-      {{#each dataArray }}
-        <li> {{object}},
+      {{#each legoData}}
+       {{#unless this.built}}
+        <li> {{this.object}},
  
-      <button type="submit" id="build" value="Build"></button>,
+        <button type="submit" id="build" value="Build"></button>,
         </li>
+        {{/unless}}
       {{/each}}
       </ul>
       
     </div>  <!-- end of first column (left side) -->
-
+<br><br><br><br>
     <div class = "col-6">
 
       <h2>Completed projects: </h2>
       
-         <ul>
-      {{#each doneArray }}
-        <li> {{object}},
-          
-      <button type="submit" id="break" value="Disassemble"></button>,
+      <ul>
+      {{#each legoData }}
+       {{#if this.built}}
+        <li> {{this.object}},  
+          <button type="submit" id="break" value="Disassemble"></button>,
         </li>
+        {{/if}}
       {{/each}}
       </ul>
     </div>
