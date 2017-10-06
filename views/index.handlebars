@@ -29,7 +29,7 @@
       {{#each legoData}}
        {{#unless this.built}}
         <li> {{this.object}},
- 
+          <p> something false </p>
         <button type="submit" id="build" value="Build"></button>,
         </li>
         {{/unless}}
@@ -45,7 +45,8 @@
       <ul>
       {{#each legoData }}
        {{#if this.built}}
-        <li> {{this.object}},  
+        <li> {{this.object}}, 
+          <p> something true </p> 
           <button type="submit" id="break" value="Disassemble"></button>,
         </li>
         {{/if}}
