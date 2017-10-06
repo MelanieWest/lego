@@ -2,10 +2,13 @@ var legoData = require("../data/legoData.js");
 
 module.exports = function(app){
 
-    app.get("/legos",function(req,res){
+    app.get("/",function(req,res){
         //receive data from html fields
         //res.json(legoData);
         console.log('app.get');
+        var dataArray = JSON.stringify(legoData)
+        console.log('lego data seen by get: '+ dataArray);
+
         res.render("index",legoData);
 
     });     //end of get
@@ -16,20 +19,11 @@ module.exports = function(app){
         console.log('app.post')
   //      console.log(req.body);
         legoData.push(req.body);
-        console.log('lego array: '+legoData);
-        
-            // legoData.id[legoData.length-1] = legoData.length-1;
-            
-            //     for (var i=0; i< legoData.length; i++){
-            //         if(!legoData[i].built){
-            //             listItems.dataArray.push(legoData[i]);
-            //         }else{
-            //             listItems.doneArray.push(legoData[i]);
-            //         }
-            //     }
+        var dataArray = JSON.stringify(legoData)
+        console.log('lego array seen by post: '+ dataArray);
 
+        res.redirect("/");
 
-         res.render("index",legoData);
       }); //end of post
 
 };     // end of function
