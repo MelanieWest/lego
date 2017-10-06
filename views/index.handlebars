@@ -1,35 +1,24 @@
 <div class = "container">
   <div class = "row">
     
-  </div>
-  <div class = "row">
-    <div class = "col -6">
-<br><br>
+  <br><br>
     <form id="newLego" class="button-size">
-      <textarea type="text" name="creation" id="object"></textarea>
+      <textarea type="text" id="object" placeholder="New Project..." ></textarea>
       <button type="submit" id="submit">submit</button>
     </form>
 
- 
+  </div>
 
+  <div  class = "row">
+    <div id = "col1" class = "col-6">
       <!-- List all non-built lego objects entered -->
-      <style media="screen">
-        li {
-          height : 40px;
-          width: 100px;
-          color: green;
-          background-color: yellow;
-          margin-bottom: 30px;
-        }
-      </style>
-
-      <h2>Projects to be built:</h2>
+ 
+      <h4>Projects to be built:</h4>
 
       <ul>
       {{#each data}}
        {{#unless this.built}}
-        <li> {{this.object}},
- 
+        <li> <text id="txtbx-lf">{{this.object}}</text>
         <button type="submit" id="build" value="Build">Build</button>,
         </li>
         {{/unless}}
@@ -38,15 +27,14 @@
       
     </div>  <!-- end of first column (left side) -->
 <br><br><br><br>
-    <div class = "col-6">
+    <div id ="col2" class = "col-6">
 
-      <h2>Completed projects: </h2>
+      <h4>Completed projects: </h4>
       
       <ul>
       {{#each data }}
        {{#if this.built}}
-        <li> {{this.object}}, 
-       
+        <li> <text id="txtbx-rt">{{this.object}}</text>       
           <button type="submit" id="break" value="Disassemble">Disassemble</button>,
         </li>
         {{/if}}
