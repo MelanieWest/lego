@@ -18,7 +18,7 @@
       <ul>
       {{#each data}}
        {{#unless this.built}}
-          <form >
+          <form action = "/update/{{this.id}}" method ="POST">
           <li> <text id="txtbx-lf" value={{this.id}}>{{this.object}}</text>
           <button type="submit" id="build" value={{this.id}}>Build</button>,
           </li>
@@ -87,25 +87,4 @@
 
     });
 
-
-   $("#build").on("click",function(){
-
-// set the 'built' property to 'true' so the object can move to the right
-    //of the screen when sorted
-    console.log('build');
-
-   this.built = true;  //set this for console log below
-    
-   var legoToMove = {
-      id: this.id,
-      object: this.object,
-      built: true
-    }
-     
-     $.post(currentUrl + "/move",legoToMove,function(data){
-       console.log(data);
-     })
-      console.log(legoData);
-  
-  }); 
     </script>

@@ -81,12 +81,14 @@ app.post('/update/:id', (request, response) => {
     let updateID = parseInt(request.params.id);
 
     //toggle the boolean value of 'built' parameter
+    // the array index is one less than the id.
+
     var bool = dataRender.data[updateID-1].built;
     dataRender.data[updateID-1].built = !bool;
     console.log('object is '+ request.params.object)
     console.log('boolean =' +bool);
 
-     //this is supposed to refresh the screen...
+     //this is supposed to refresh the screen (and it does)
     response.redirect('/')
     console.log('UPDATE ID: ' + updateID);
   });
