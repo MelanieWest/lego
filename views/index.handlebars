@@ -2,9 +2,9 @@
   <div class = "row">
     
   <br><br>
-    <form id="newLego" class="button-size">
-      <textarea type="text" id="object" placeholder="New Project..." ></textarea>
-      <button type="submit" id="submit">submit</button>
+  <form action = "/" method ="POST">
+      <textarea type="text" id="inbox" name ="object" placeholder="New Project..." ></textarea>
+      <button type="submit" id = "new" >submit</button>
     </form>
 
   </div>
@@ -67,22 +67,17 @@
 
       console.log(newLego);
 
-
       $.post(currentUrl+ "/", newLego,
         function(data) {
 
          // let them know the entry was received
-
           if (data) {
             alert("The blocks are ready for your new project..");
           }
 
-          //window.location.reload();
-
           // Clear the form when submitting
           $("#object").val("");
-
-              
+             
         });
 
     });

@@ -22,7 +22,7 @@ module.exports = function(app){
     app.post("/", function(req, res) {
 
         console.log('app.post')
-        console.log(req.body);
+        console.log(req.body.object);
 
         //set data values for insertion into object array
         req.body.built = false;     //it was reading as a string
