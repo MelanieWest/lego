@@ -55,31 +55,6 @@
 
       var currentUrl = window.location.origin;
 
-    $("#newLego").on("submit", function(event) {
-      event.preventDefault();
-
-      // Here we grab the form elements
-      var newLego = {
-        id: -1,
-        object: $("#object").val().trim(),
-        built: false
-      }
-
-      console.log(newLego);
-
-      $.post(currentUrl+ "/", newLego,
-        function(data) {
-
-         // let them know the entry was received
-          if (data) {
-            alert("The blocks are ready for your new project..");
-          }
-
-          // Clear the form when submitting
-          $("#object").val("");
-             
-        });
-
-    });
+   
 
     </script>

@@ -9,6 +9,10 @@ module.exports = function(app){
        
         //res.json(legoData);
         console.log('app.get');
+
+        //why is this here?  it seems to only disply stuff to console
+        //if the array has items in it
+
         if(!legoData.length){
             dataArray = JSON.stringify(legoData)
             console.log('lego data seen by get: '+ dataArray);
@@ -42,10 +46,7 @@ module.exports = function(app){
             //legoData.push(req.body);
             legoData.push(lego);
         }
-
-
- 
-        
+      
         dataArray = JSON.stringify(legoData)
         console.log('lego array seen by post: '+ dataArray);
 
@@ -53,27 +54,12 @@ module.exports = function(app){
 
       }); //end of post
 
-app.post("/move",function(req,res){
-    console.log('move');        //this never logs
-    for (var i=0; i<legoData.length; i++){
-        if(req.body.object = dataRender.data[i].object){
-            console.log("they're the same!");
-            dataRender.data[i].built = true;
-        }
-    }
-    res.render("index", dataRender);
-    
-})
 
 app.get("/api/legos",function(req,res){
         //console.log(req.body);
         res.send(legoData);
-        //res.render("test",legoData);     
+        
 });
-
-// this does something similar to "/move" endpoint. Neither
-//works as desired.  if this is used with pressing 'build',
-// a question mark shows up.  Some show as undefined.
 
 
 app.post('/update/:id', (request, response) => {
@@ -85,12 +71,9 @@ app.post('/update/:id', (request, response) => {
 
     var bool = dataRender.data[updateID-1].built;
     dataRender.data[updateID-1].built = !bool;
-    console.log('object is '+ request.params.object)
-    console.log('boolean =' +bool);
 
-     //this is supposed to refresh the screen (and it does)
     response.redirect('/')
-    console.log('UPDATE ID: ' + updateID);
+
   });
 
 };     // end of function
