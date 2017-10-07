@@ -2,13 +2,17 @@ var legoData = require("../data/legoData.js");
 
 module.exports = function(app){
 
+    var dataRender = {data:legoData};
+    var dataArray  = JSON.stringify(legoData);
+
     app.get("/",function(req,res){
        
         //res.json(legoData);
         console.log('app.get');
-        var dataArray = JSON.stringify(legoData)
-        var dataRender ={data:legoData};
-        console.log('lego data seen by get: '+ dataArray);
+        if(!legoData.length){
+            dataArray = JSON.stringify(legoData)
+            console.log('lego data seen by get: '+ dataArray);
+        }
         
         res.render("index", dataRender);
  
@@ -18,22 +22,48 @@ module.exports = function(app){
     app.post("/", function(req, res) {
 
         console.log('app.post')
-  //      console.log(req.body);
+        console.log(req.body);
 
-        // false was coming back as a string; make sure it's boolean
-        req.body.built = false;
-        //it also returns quotes around property names- try to remove quotes:
-        //req.body = req.body.replace(/\"([^(\")"]+)\":/g,"$1:");
+        //set data values for insertion into object array
+        req.body.built = false;     //it was reading as a string
+        req.body.id = (legoData.length)+1;    //array length viewable here
 
-        legoData.push(req.body);
-        var dataArray = JSON.stringify(legoData)
+        var lego = {
+            id:  legoData.length +1,
+            object:  req.body.object,
+            built:  false
+        };
+
+        if (legoData[(legoData.length-1)].object ==""){
+            //if the previous entry was blank
+            lego.id = legoData.length;
+            legoData[(legoData.length-1)] = lego;
+        }else{
+            //legoData.push(req.body);
+            legoData.push(lego);
+        }
+
+
+ 
+        
+        dataArray = JSON.stringify(legoData)
         console.log('lego array seen by post: '+ dataArray);
 
         res.redirect("/");
 
       }); //end of post
 
-
+app.post("/move",function(req,res){
+    console.log('move');        //this never logs
+    for (var i=0; i<legoData.length; i++){
+        if(req.body.object = dataRender.data[i].object){
+            console.log("they're the same!");
+            dataRender.data[i].built = true;
+        }
+    }
+    res.render("index", dataRender);
+    
+})
 
 app.get("/api/legos",function(req,res){
         //console.log(req.body);
@@ -41,5 +71,18 @@ app.get("/api/legos",function(req,res){
         //res.render("test",legoData);     
 });
 
+
+app.post('/update/:id', (request, response) => {
+    let updateID = parseInt(request.params.id);
+
+    //toggle the boolean value of 'built' parameter
+    var bool = dataRender.data[updateID].built;
+    dataRender.data[updateID].built = !bool;
+    
+    console.log('boolean =' +bool);
+
+    response.redirect('/')
+    console.log('UPDATE ID: ' + updateID);
+  });
 
 };     // end of function

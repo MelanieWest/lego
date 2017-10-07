@@ -24,7 +24,6 @@ app.set("view engine", "handlebars");
 require("./routes/dataroutes")(app);
 
 
-
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 });

@@ -18,9 +18,11 @@
       <ul>
       {{#each data}}
        {{#unless this.built}}
-        <li> <text id="txtbx-lf">{{this.object}}</text>
-        <button type="submit" id="build" value="Build">Build</button>,
-        </li>
+          <form >
+          <li> <text id="txtbx-lf" value={{this.id}}>{{this.object}}</text>
+          <button type="submit" id="build" value={{this.id}}>Build</button>,
+          </li>
+          </form>
         {{/unless}}
       {{/each}}
       </ul>
@@ -34,8 +36,11 @@
       <ul>
       {{#each data }}
        {{#if this.built}}
-        <li> <text id="txtbx-rt">{{this.object}}</text>       
-          <button type="submit" id="break" value="Disassemble">Disassemble</button>,
+        <li>
+          <form action = "/update/{{this.id}}" method ="POST">
+          <text id="txtbx-rt" value={{this.id}}>{{this.object}}</text>       
+          <button type="submit" id="break" value={{this.id}}>Disassemble</button>,
+          </form>
         </li>
         {{/if}}
       {{/each}}
@@ -45,6 +50,7 @@
   </div>  <!--end of 'row' div that defines the body -->
 
 </div>    <!--end of container div -->
+
    <script>
 
       var currentUrl = window.location.origin;
@@ -52,12 +58,12 @@
     $("#newLego").on("submit", function(event) {
       event.preventDefault();
 
-
       // Here we grab the form elements
       var newLego = {
+        id: -1,
         object: $("#object").val().trim(),
-        built: false            //default when first entered
-      };
+        built: false
+      }
 
       console.log(newLego);
 
@@ -82,16 +88,24 @@
     });
 
 
-  $("#build").on("click",function(){
+   $("#build").on("click",function(){
 
-    // set the 'built' property to 'true' so the object can move to the right
+// set the 'built' property to 'true' so the object can move to the right
     //of the screen when sorted
+    console.log('build');
 
-     this.built = true;
-     $.post(currentUrl + "/legos")
+   this.built = true;  //set this for console log below
+    
+   var legoToMove = {
+      id: this.id,
+      object: this.object,
+      built: true
+    }
+     
+     $.post(currentUrl + "/move",legoToMove,function(data){
+       console.log(data);
+     })
       console.log(legoData);
-     //no new data to post, but the modified data should change
-     //the location of the variable
-
-  });
+  
+  }); 
     </script>
