@@ -71,16 +71,22 @@ app.get("/api/legos",function(req,res){
         //res.render("test",legoData);     
 });
 
+// this does something similar to "/move" endpoint. Neither
+//works as desired.  if this is used with pressing 'build',
+// a question mark shows up.  Some show as undefined.
+
 
 app.post('/update/:id', (request, response) => {
+
     let updateID = parseInt(request.params.id);
 
     //toggle the boolean value of 'built' parameter
-    var bool = dataRender.data[updateID].built;
-    dataRender.data[updateID].built = !bool;
-    
+    var bool = dataRender.data[updateID-1].built;
+    dataRender.data[updateID-1].built = !bool;
+    console.log('object is '+ request.params.object)
     console.log('boolean =' +bool);
 
+     //this is supposed to refresh the screen...
     response.redirect('/')
     console.log('UPDATE ID: ' + updateID);
   });
