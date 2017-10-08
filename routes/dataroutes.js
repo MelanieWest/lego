@@ -28,6 +28,10 @@ module.exports = function(app){
         console.log('app.post')
         console.log(req.body.object);
 
+        //if data was entered:
+
+        if(req.body.object){
+
         //set data values for insertion into object array
         req.body.built = false;     //it was reading as a string
         req.body.id = (legoData.length)+1;    //array length viewable here
@@ -38,8 +42,10 @@ module.exports = function(app){
             built:  false
         };
 
+        //if the previous object is blank (always true for the first
+        //object), replace it with the current object
+
         if (legoData[(legoData.length-1)].object ==""){
-            //if the previous entry was blank
             lego.id = legoData.length;
             legoData[(legoData.length-1)] = lego;
         }else{
@@ -51,6 +57,8 @@ module.exports = function(app){
         console.log('lego array seen by post: '+ dataArray);
 
         res.redirect("/");
+    };
+        return;
 
       }); //end of post
 
