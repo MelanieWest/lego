@@ -17,9 +17,8 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//set up the one endpoint, /:
 
-//require("./routes/htmlroutes")(app);
+//set up the endpoints, "/",  "/update/:id", "/api/data"
 
 require("./routes/dataroutes")(app);
 

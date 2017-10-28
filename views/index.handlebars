@@ -37,6 +37,7 @@
       {{#each data }}
        {{#if this.built}}
         <li>
+          {{!-- <p>ID: {{this.id}} <a class="delete" href="/delete/{{this.id}}">Donate this Toy</a></p> --}}
           <form action = "/update/{{this.id}}" method ="POST">
           <text id="txtbx-rt" value={{this.id}}>{{this.object}}</text>       
           <button type="submit" id="break" value={{this.id}}>Disassemble</button>,

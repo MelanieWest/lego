@@ -84,4 +84,24 @@ app.post('/update/:id', (request, response) => {
 
   });
 
+  //this is not yet working
+  app.get('/delete/:id', (request, response) => {
+    let deleteID = parseInt(request.params.id);
+    if (isNaN(deleteID)) {
+      //Handle invalid IDs, we only want integers
+      response.send("ERROR_INVALID_ID");
+    }
+
+    // connection.query(
+    //   "DELETE FROM `legos` WHERE `id` = ?",
+    //   deleteID,
+    //   (err, results) => {
+    //       if (err) {
+    //         throw err;
+    //       }
+    // console.log('Deleted ' + results.affectedRows);
+    // response.redirect("/");
+    // })
+  });
+
 };     // end of function
